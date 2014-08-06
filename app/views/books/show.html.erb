@@ -4,15 +4,30 @@
   <strong>Title:</strong>
   <%= @book.title %>
 </p>
-
 <p>
-  <strong>Rating:</strong>
-  <%= @book.rating %>
+  <strong>Author:</strong>
+  <%= @book.author %>
 </p>
 
 <p>
+  <strong>Series:</strong>
+  <%= @book.series %>
+</p>
+<p>
+  <strong>ISBN:</strong>
+  <%= @book.isbn %>
+</p>
+<p>
+  <strong>Tags:</strong>
+  <%= @book.tags %>
+</p>
+<p>
   <strong>Active:</strong>
   <%= @book.active %>
+</p>
+<p>
+<strong>Cover:</strong>
+<%= image_tag @book.cover %>
 </p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |

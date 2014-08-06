@@ -16,8 +16,24 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating %>
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+   <div class="field">
+    <%= f.label :ISBN %><br>
+    <%= f.number_field :isbn %>
+  </div>
+   <div class="field">
+    <%= f.label :series %><br>
+    <%= f.text_field :series %>
+  </div>
+    <div class="field">
+    <%= f.label :cover %>
+    <%= f.file_field :cover %>
+  </div>
+    <div class="field">
+    <%= f.label :tags %><br>
+    <%= f.text_field :tags %>
   </div>
     <div class="actions">
     <%= f.submit %>
