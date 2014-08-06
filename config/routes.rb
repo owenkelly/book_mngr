@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
   
   root 'books#index'
-  resources :books
-  resources :reviews
+  resources :books do
+    resources :reviews
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
