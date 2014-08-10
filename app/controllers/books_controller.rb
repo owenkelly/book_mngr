@@ -4,7 +4,9 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @search = Book.search(params[:q])
+    @books = @search.result.includes(:reviews)
+    @search.build_condition
   end
 
   # GET /books/1
