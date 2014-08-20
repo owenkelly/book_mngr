@@ -14,5 +14,10 @@ class Book < ActiveRecord::Base
 	def self.ransackable_attributes auth_object = nil
 		%w(title author isbn tags) + _ransackers.keys
 	end
+
+	def average_rating
+		reviews.average(:rating)
+	end
+
 	
 end

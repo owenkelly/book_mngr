@@ -21,7 +21,7 @@
         <td><%= book.author%></td>
         <td><%= book.series%></td>
         <td><%= book.isbn%></td>
-        <td><%= book.tags%></td>
+       
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Reviews', book_reviews_path(book.id) %></td>
@@ -30,7 +30,8 @@
     <% end %>
   </tbody>
 </table>
-
+<br>
+<%= will_paginate @books %>
 <br>
 
 <%= link_to 'New Book', new_book_path %>

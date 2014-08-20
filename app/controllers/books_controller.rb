@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @search = Book.search(params[:q])
-    @books = @search.result.includes(:reviews)
+    @books = @search.result.includes(:reviews).paginate(:page => params[:page])
     @search.build_condition
   end
 
