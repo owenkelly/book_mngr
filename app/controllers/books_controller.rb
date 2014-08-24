@@ -69,7 +69,12 @@ class BooksController < ApplicationController
   end
 
   def disable
+    @book = Book.find(params[:book_id])
     @book.update(active: false)
+    respond_to do |format|
+      format.html { redirect_to books_url, notice: 'Book was successfully deactivated.' }
+      format.json { head :no_content }
+    end
   end
 
   private

@@ -1,10 +1,11 @@
 module BooksHelper
 
 
-def disable_or_destroy
-	if book.has_reviews?
-		link_to book.disable
-	else
-		book
-
+	def disable_or_destroy book
+		if book.rating
+			link_to "Disable", book_disable_path(book), data: { confirm: 'Are you sure?' }
+		else
+			link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }
+		end
+	end
 end

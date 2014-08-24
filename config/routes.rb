@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   
   root 'books#index'
+  
   resources :books do
+    get "disable"
     resources :reviews
   end
 

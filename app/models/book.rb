@@ -22,5 +22,6 @@ class Book < ActiveRecord::Base
 		reviews.average(:rating)
 	end
 
+
 	
 end
