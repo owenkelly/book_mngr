@@ -1,12 +1,17 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_rating
+  
 
   # GET /books
   # GET /books.json
   def index
-    @search = Book.search(params[:q])
-    @books = @search.result.includes(:reviews).paginate(:page => params[:page])
+    @search = Book.where(active: true).search(params[:q])
+    @books = @search.result.includes(:reviews).paginate(:page => params[:page]).order(:title)
     @search.build_condition
+    
+    
+
   end
 
   # GET /books/1
@@ -63,14 +68,24 @@ class BooksController < ApplicationController
     end
   end
 
+  def disable
+    @book.update(active: false)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
     end
 
+    def set_rating
+      Book.all.each do |b|
+        b.update(rating: b.average_rating)
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :active, :author, :series, :isbn, :tags, :cover)
+      params.require(:book).permit(:title, :active, :author, :series, :isbn, :tags, :cover, :rating)
     end
 end

@@ -10,10 +10,13 @@ class Book < ActiveRecord::Base
 
 	scope :active?, -> { where active: true }
 	scope :deactive?, -> { where.not active: true}
+	scope :has_reviews?, -> { where.not rating: nil}
+
 
 	def self.ransackable_attributes auth_object = nil
-		%w(title author isbn tags) + _ransackers.keys
+		%w(title author isbn rating) + _ransackers.keys
 	end
+
 
 	def average_rating
 		reviews.average(:rating)

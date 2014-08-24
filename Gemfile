@@ -23,11 +23,13 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'ransack'
 gem 'i18n'
 gem 'will_paginate'
+gem 'arel'
+
 group :development do
   gem 'spring'
+  gem 'jazz_hands'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pry-rails'
   gem 'rubocop', require: false
   gem 'simplecov', require: false
   gem "codeclimate-test-reporter", require: false
