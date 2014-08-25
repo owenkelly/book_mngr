@@ -9,9 +9,6 @@ class BooksController < ApplicationController
     @search = Book.where(active: true).search(params[:q])
     @books = @search.result.includes(:reviews).paginate(:page => params[:page]).order(:title)
     @search.build_condition
-    
-    
-
   end
 
   # GET /books/1
@@ -91,6 +88,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :active, :author, :series, :isbn, :tags, :cover, :rating)
+      params.require(:book).permit(:title, :active, :author, :isbn, :tag_list, :cover, :rating)
     end
 end

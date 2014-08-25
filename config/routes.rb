@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   
   root 'books#index'
+
+  get 'tags/:tag', to: 'books#index', as: :tag
   
   resources :books do
     get "disable"

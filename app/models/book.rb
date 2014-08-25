@@ -4,6 +4,8 @@ class Book < ActiveRecord::Base
 	validates :author, presence: true
 	validates :cover, presence: true
 
+	acts_as_taggable
+
 	mount_uploader :cover, ImageUploader
 	
 	has_many :reviews
@@ -14,7 +16,7 @@ class Book < ActiveRecord::Base
 
 
 	def self.ransackable_attributes auth_object = nil
-		%w(title author isbn rating) + _ransackers.keys
+		%w(title author isbn rating tags) + _ransackers.keys
 	end
 
 
