@@ -15,11 +15,6 @@ class Book < ActiveRecord::Base
 	scope :has_reviews?, -> { where.not rating: nil}
 
 
-	def self.ransackable_attributes auth_object = nil
-		%w(title author isbn rating tags) + _ransackers.keys
-	end
-
-
 	def average_rating
 		reviews.average(:rating)
 	end

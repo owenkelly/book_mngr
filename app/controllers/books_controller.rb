@@ -6,9 +6,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @search = Book.where(active: true).search(params[:q])
-    @books = @search.result.includes(:reviews).paginate(:page => params[:page]).order(:title)
-    @search.build_condition
+    @books = Book.where(active: true).paginate(:page => params[:page]).order(:title) 
   end
 
   # GET /books/1
