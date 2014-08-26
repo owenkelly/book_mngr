@@ -12,7 +12,7 @@ class BooksController < ApplicationController
     else
       @search = Book.active?.search(params[:q])
     end
-      @books = @search.result.includes(:reviews, :tags).paginate(:page => params[:page]).order(:rating)
+      @books = @search.result.includes(:reviews, :tags).paginate(:page => params[:page]).order(rating: :desc)
       @search.build_condition
   end
 
@@ -93,7 +93,7 @@ class BooksController < ApplicationController
 
     def set_rating
       Book.all.each do |b|
-        b.update(rating: b.average_rating)
+        b.update(rating: b.average_rating) unless b.reviews.count == 0
       end
     end
 

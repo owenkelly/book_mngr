@@ -1,0 +1,13 @@
+<%= div_for book do %>
+<script>
+	$('<%= "#book_#{book.id}.book" %>').raty({
+    	readOnly: true,
+    	score: <%= book.rating %>,
+    	size: 24,
+    	path: '/assets',
+   	});
+</script>
+<% end %>
+
+
+

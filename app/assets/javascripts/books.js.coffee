@@ -2,15 +2,3 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-app = angular.module("Library", ["ngResource"])
-
-app.factory "Book", ($resource) ->
-	$resource("/books/:id", {id: "@id"}, {update: {method: "PUT"}})
-
-@BookCtrl = ($scope, Book) ->
-	$scope.books = Book.query()
-
-	$scope.addBook = ->
-		book = Book.save($scope.newBook)
-		$scope.books.push(book)
-		$scope.newBook = {}
