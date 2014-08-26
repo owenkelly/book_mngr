@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   
   root 'books#index'
 
-  get 'tags/:tag', to: 'books#index', as: :tag
+  get 'tags/:tag', to: 'books#search', as: :tag
   
   resources :books do
+    collection do
+      match 'search' => 'books#search', via: [:get, :post], as: :search
+    end
     get "disable"
     resources :reviews
   end

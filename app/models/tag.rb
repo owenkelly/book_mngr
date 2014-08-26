@@ -7,4 +7,5 @@ class Tag < ActiveRecord::Base
 		["name"] + _ransackers.keys
 	end
 
+
 end

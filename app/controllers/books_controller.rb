@@ -7,15 +7,25 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @search = Book.where(active: true).search(params[:q])
-    @books = @search.result.includes(:reviews, :tags).paginate(:page => params[:page]).order(:rating)
-    @search.build_condition
+    if params[:tag]
+      @search = Book.active?.search(tags_name_eq: params[:tag])
+    else
+      @search = Book.active?.search(params[:q])
+    end
+      @books = @search.result.includes(:reviews, :tags).paginate(:page => params[:page]).order(:rating)
+      @search.build_condition
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
   end
+
+  def search
+    index
+    render :index
+  end
+
 
   # GET /books/new
   def new
@@ -85,11 +95,6 @@ class BooksController < ApplicationController
       Book.all.each do |b|
         b.update(rating: b.average_rating)
       end
-    end
-
-    def invalid_input
-      flash[:error] = "ISBN and rating only searching with numbers"
-      redirect_to :back
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
