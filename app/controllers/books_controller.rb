@@ -1,12 +1,15 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :set_rating
+  #rescue_from ActiveRecord::StatementInvalid, with: :invalid_input
   
 
   # GET /books
   # GET /books.json
   def index
-    @books = Book.where(active: true).paginate(:page => params[:page]).order(:title) 
+    @search = Book.where(active: true).search(params[:q])
+    @books = @search.result.includes(:reviews, :tags).paginate(:page => params[:page]).order(:rating)
+    @search.build_condition
   end
 
   # GET /books/1
@@ -82,6 +85,11 @@ class BooksController < ApplicationController
       Book.all.each do |b|
         b.update(rating: b.average_rating)
       end
+    end
+
+    def invalid_input
+      flash[:error] = "ISBN and rating only searching with numbers"
+      redirect_to :back
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

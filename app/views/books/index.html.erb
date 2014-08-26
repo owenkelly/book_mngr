@@ -1,14 +1,16 @@
 
+<%= render "shared/search_form.html.erb" %>
+
 <h1>Listing books</h1>
 
 <table>
   <thead>
     <tr>
-      <th><%# sort_link @search, :title %>TITLE</th>
-      <th><%# sort_link @search, :author %>AUTHOR</th>
-      <th><%# sort_link @search, :rating %>RATING</th>
+      <th><%= sort_link @search, :title %></th>
+      <th><%= sort_link @search, :author %></th>
+      <th><%= sort_link @search, :rating %></th>
 
-      <th colspan="3"></th>
+      <th colspan="3">Tags</th>
     </tr>
   </thead>
 
@@ -18,7 +20,7 @@
         <td><%= link_to book.title, book %></td>
         <td><%= book.author%></td>
         <td><%= book.rating%></td>
-        <td><%= raw book.tag_list.map {|tag| link_to tag, tag_path(tag)}.join(", ") %></td>      
+        <td><%= raw book.tags.map(&:name).map {|tag| link_to tag, tag_path(tag)}.join(", ") %></td>      
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Reviews', book_reviews_path(book.id) %></td>
         <td><%= disable_or_destroy book %></td>
