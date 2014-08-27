@@ -19,6 +19,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    @reviews = Review.where(book_id: @book.id)
   end
 
   def search

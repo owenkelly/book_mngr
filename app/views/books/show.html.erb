@@ -11,26 +11,45 @@
 </p>
 
 <p>
-  <strong>Tag List:</strong>
+  <strong>Tags:</strong>
   <%= @book.tag_list %>
 </p>
 <p>
   <strong>ISBN:</strong>
   <%= @book.isbn %>
 </p>
+
 <p>
-  <strong>Active:</strong>
-  <%= @book.active %>
-</p>
-<p>
-<strong>Cover:</strong>
+
 <%= image_tag @book.cover %>
 </p>
 
-<p>Rating</p>
-<%= render_stars @book %>
+<p><strong>Rating:</strong> <%= render_stars @book %></p>
+
+
+<p><strong>Reviews:</strong></p>
+
+
+
+  <ul>
+    <% @reviews.each do |review| %>
+      
+        <li><%= render_stars review %></li>
+        <li><%= review.review %></li>
+        <li><%= link_to 'Edit', [:edit, @book, review] %></li>
+        <li><%= link_to 'Destroy', [@book, review], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <% end %>
+ </ul>
+
+<br>
+
+
+
 
 
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<%= link_to 'Back', books_path %> |
+<%= link_to 'New Review', new_book_review_path(@book) %> |
+<%= disable_or_destroy @book %>
+

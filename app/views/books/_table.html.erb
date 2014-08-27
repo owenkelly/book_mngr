@@ -5,7 +5,4 @@
     <td><%= book.author%></td>
     <td><%= render_stars book%></td>
     <td><%= tag_links book %></td>      
-    <td><%= link_to 'Edit', edit_book_path(book) %></td>
-    <td><%= link_to 'Reviews', book_reviews_path(book.id) %></td>
-    <td><%= disable_or_destroy book %></td>
 </tr>

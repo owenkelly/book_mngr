@@ -1,8 +1,8 @@
-<%= div_for book do %>
+<%= div_for object do %>
 <script>
-	$('<%= "#book_#{book.id}.book" %>').raty({
+	$('<%= "##{object.class}_#{object.id}.#{object.class}".downcase %>').raty({
     	readOnly: true,
-    	score: <%= book.rating %>,
+    	score: <%= object.rating %>,
     	size: 24,
     	path: '/assets',
    	});

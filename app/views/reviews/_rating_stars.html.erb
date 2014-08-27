@@ -1,0 +1,10 @@
+
+<script>
+  $('#user_star').raty({
+    score: <%= review.rating %>,
+    path: '/assets',
+    click: function(score, evt) {
+    var review.rating = $(this).next().find("input[name='score']").val();
+    }  
+  });
+</script>

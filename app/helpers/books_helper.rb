@@ -15,7 +15,7 @@ module BooksHelper
 	end
 
 
-	def render_stars book
-		render "shared/average_stars.html.erb", book: book
+	def render_stars object
+		render "shared/average_stars.html.erb", object: object
 	end
 end

@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.text_field :rating %>
+  <div id="user_star">
+    <%= render 'rating_stars.html.erb', review: @review, book: @book %>
+    <%= f.hidden_field :rating %>
   </div>
   <div class="field">
     <%= f.label :review %><br>
