@@ -23,6 +23,7 @@ gem 'ransack'
 gem 'i18n'
 gem 'will_paginate'
 gem 'arel'
+gem 'jquery-raty-rails', github: 'emaiax/jquery-raty-rails'
 
 group :development do
   gem 'spring'

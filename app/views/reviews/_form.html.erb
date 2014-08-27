@@ -13,8 +13,8 @@
 
   <div id="user_star">
     <%= render 'rating_stars.html.erb', review: @review, book: @book %>
-    <%= f.hidden_field :rating %>
   </div>
+  <div id="raty_score"></div>
   <div class="field">
     <%= f.label :review %><br>
     <%= f.text_field :review %>
