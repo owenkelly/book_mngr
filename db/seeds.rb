@@ -13,7 +13,7 @@ titles = ["A Midsummer Night's Dream", "Moby Dick", "A Game of Thrones", "The Ey
 			"Utopia", "The Prince", "The Illiad", "Beowulf", "The Bible", "1984", "Brave New World",
 			"Animal Farm", "Redshirts", "When Lions Roared", "Beers of Washington State",
 			"Everybody Poops", "Mockingjay", "Harry Potter visits Bombay", "Indiana Jane",
-			"30 Ways to Cook a Chicken", "HABENEBROS!" ]
+			"30 Ways to Cook a Chicken", "HABENEBROS!"]
 
 authors = ["Homer", "Shakespeare", "Jane Austin", "Geroge RR Martin", "Tony Stark", 
 			"Catwoman", "Sandy Metz", "John Conner", "George Orwell", "Thomas Moore",

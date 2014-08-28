@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :set_rating
+  #before_action :set_rating
   #rescue_from ActiveRecord::StatementInvalid, with: :invalid_input
   
 
@@ -19,7 +19,9 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @reviews = Review.where(book_id: @book.id)
+    @search = Review.where(book_id: @book.id).search(params[:q])
+    @reviews = @search.result.paginate(:page => params[:page]).order(rating: :desc)
+    @search.build_condition
   end
 
   def search
@@ -70,7 +72,12 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    @book.destroy
+    if @book.reviews.count > 0
+      redirect_to @book
+      flash[:error] = "Can't delete book with Reviews"
+    else 
+      @book.destroy
+    end
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }

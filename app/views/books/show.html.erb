@@ -37,7 +37,8 @@
         <li><%= render_stars review %></li>
         <li><%= review.review %></li>
         <li><%= link_to 'Edit', [:edit, @book, review] %></li>
-        <li><%= link_to 'Destroy', [@book, review], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <li><%= link_to 'Delete Review', [@book, review], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <br>
     <% end %>
  </ul>
 
@@ -48,8 +49,8 @@
 
 
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %> |
+<%= link_to 'Edit Book Information', edit_book_path(@book) %> |
+<%= link_to 'Back to Index', books_path %> |
 <%= link_to 'New Review', new_book_review_path(@book) %> |
 <%= disable_or_destroy @book %>
 

@@ -12,12 +12,12 @@
   <% end %>
 
   <div id="user_star">
-    <%= render 'rating_stars.html.erb', review: @review, book: @book %>
+    <%= render_rating_stars @review %>
   </div>
   <div id="raty_score"></div>
   <div class="field">
     <%= f.label :review %><br>
-    <%= f.text_field :review %>
+    <%= f.text_area :review %>
   </div>
   <div class="field">
     <%= f.hidden_field :book_id, {value: @book.id} %><br>

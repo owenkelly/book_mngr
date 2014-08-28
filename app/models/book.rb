@@ -3,6 +3,8 @@ class Book < ActiveRecord::Base
 	validates :title, presence: true, uniqueness: true
 	validates :author, presence: true
 	validates :cover, presence: true
+	validates :isbn, uniqueness: true, numericality: true,
+			  length: { is: 13 }, allow_blank: true
 
 	mount_uploader :cover, ImageUploader
 	
