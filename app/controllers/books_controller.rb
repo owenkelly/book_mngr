@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  #before_action :set_rating
-  #rescue_from ActiveRecord::StatementInvalid, with: :invalid_input
+  
   
 
   # GET /books
@@ -44,29 +43,14 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 
-    respond_to do |format|
-      if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
-        format.json { render :show, status: :created, location: @book }
-      else
-        format.html { render :new }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_to_creative :created, 'Book was successfully created.'
+
   end
 
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    respond_to do |format|
-      if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
-        format.json { render :show, status: :ok, location: @book }
-      else
-        format.html { render :edit }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_to_creative :ok, 'Book was successfully updated.'  
   end
 
   # DELETE /books/1
@@ -78,19 +62,13 @@ class BooksController < ApplicationController
     else 
       @book.destroy
     end
-    respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      respond_to_destructive
   end
 
   def disable
     @book = Book.find(params[:book_id])
     @book.update(active: false)
-    respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully deactivated.' }
-      format.json { head :no_content }
-    end
+    respond_to_destructive
   end
 
   private
@@ -99,11 +77,26 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
-    def set_rating
-      Book.all.each do |b|
-        b.update(rating: b.average_rating) unless b.reviews.count == 0
+    def respond_to_creative status, notice
+      respond_to do |format|
+        if @book.update(book_params)
+          format.html { redirect_to @book, notice: notice }
+          format.json { render :show, status: status, location: @book }
+        else
+          format.html { render :edit }
+          format.json { render json: @book.errors, status: :unprocessable_entity }
+        end
       end
     end
+
+
+    def respond_to_destructive
+      respond_to do |format|
+        format.html { redirect_to books_path, notice: "Book was successfully removed." }
+        format.json { head :no_content }
+      end
+    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
