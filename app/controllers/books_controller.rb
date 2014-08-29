@@ -1,8 +1,6 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :singlesearch]
   
-  
-
   # GET /books
   # GET /books.json
   def index
@@ -28,6 +26,11 @@ class BooksController < ApplicationController
     render :index
   end
 
+  def singlesearch
+    show
+    render :show
+  end
+
 
   # GET /books/new
   def new
@@ -43,25 +46,20 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 
-    respond_to_creative :created, 'Book was successfully created.'
+    respond_to_creative :created, 'Book was successfully created.', :new
 
   end
 
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    respond_to_creative :ok, 'Book was successfully updated.'  
+    respond_to_creative :ok, 'Book was successfully updated.', :edit  
   end
 
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    if @book.reviews.count > 0
-      redirect_to @book
-      flash[:error] = "Can't delete book with Reviews"
-    else 
       @book.destroy
-    end
       respond_to_destructive
   end
 
@@ -77,13 +75,13 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
-    def respond_to_creative status, notice
+    def respond_to_creative status, notice, action
       respond_to do |format|
         if @book.update(book_params)
           format.html { redirect_to @book, notice: notice }
           format.json { render :show, status: status, location: @book }
         else
-          format.html { render :edit }
+          format.html { render action }
           format.json { render json: @book.errors, status: :unprocessable_entity }
         end
       end

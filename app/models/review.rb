@@ -5,7 +5,7 @@ class Review < ActiveRecord::Base
 	validates :rating, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
 
 	def self.ransackable_attributes(auth_object = nil)
-		%w(review) + _ransackers.keys
+		%w(review_text) + _ransackers.keys
 	end
 
 

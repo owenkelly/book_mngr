@@ -1,4 +1,5 @@
 
+<%= render "shared/search_form.html.erb", path: singlesearch_books_path(@book) %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -35,7 +36,7 @@
     <% @reviews.each do |review| %>
       
         <li><%= render_stars review %></li>
-        <li><%= review.review %></li>
+        <li><%= review.review_text %></li>
         <li><%= link_to 'Edit', [:edit, @book, review] %></li>
         <li><%= link_to 'Delete Review', [@book, review], method: :delete, data: { confirm: 'Are you sure?' } %></li>
         <br>

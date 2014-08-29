@@ -16,8 +16,8 @@
   </div>
   <div id="raty_score"></div>
   <div class="field">
-    <%= f.label :review %><br>
-    <%= f.text_area :review %>
+    <%= f.label :review_text, "Review" %><br>
+    <%= f.text_area :review_text %>
   </div>
   <div class="field">
     <%= f.hidden_field :book_id, {value: @book.id} %><br>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :books do
     collection do
       match 'search' => 'books#search', via: [:get, :post], as: :search
+      match ':id/search' => "books#singlesearch", via: [:get, :post], as: :singlesearch
     end
     get "disable"
     resources :reviews
