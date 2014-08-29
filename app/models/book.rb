@@ -8,6 +8,7 @@ class Book < ActiveRecord::Base
 
 	mount_uploader :cover, ImageUploader
 	
+	belongs_to :user
 	has_many :reviews
 	has_many :taggings
 	has_many :tags, through: :taggings

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do  
 
   
+  devise_for :users
   root 'books#index'
 
   get 'tags/:tag', to: 'books#search', as: :tag
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
       match ':id/search' => "books#singlesearch", via: [:get, :post], as: :singlesearch
     end
     get "disable"
-    resources :reviews
+    resources :reviews, except: [:show, :index]
   end
 
 

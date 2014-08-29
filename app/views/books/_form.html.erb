@@ -31,6 +31,7 @@
     <div class="field">
     <%= f.label :cover %>
     <%= f.file_field :cover %>
+    <%= f.hidden_field :user_id, {value: @user.id} %>
     <div class="actions">
     <%= f.submit %>
   </div>

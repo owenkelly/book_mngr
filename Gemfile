@@ -8,6 +8,7 @@ gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'cancancan'
+gem 'rolify'
 gem 'ancestry'
 gem 'pg'
 gem "twitter-bootstrap-rails"

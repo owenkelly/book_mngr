@@ -1,8 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
-
+  before_action :authenticate_user!
   before_action :set_book
-
   after_action :set_rating
 
 
@@ -58,15 +57,16 @@ class ReviewsController < ApplicationController
     end
 
     def set_book
-      @book = Book.find(params[:book_id])
+      @book = Book.active?.find(params[:book_id])
     end
 
     def set_rating
       @book.update(rating: @book.average_rating)
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:rating, :review_text, :book_id)
+      params.require(:review).permit(:rating, :review_text, :book_id, :user_id)
     end
 end

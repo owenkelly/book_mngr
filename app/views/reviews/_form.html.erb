@@ -21,6 +21,7 @@
   </div>
   <div class="field">
     <%= f.hidden_field :book_id, {value: @book.id} %><br>
+    <%= f.hidden_field :user_id, {value: @user.id} %>
   </div>
   <div class="actions">
     <%= f.submit %>
