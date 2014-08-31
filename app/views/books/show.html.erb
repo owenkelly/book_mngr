@@ -36,9 +36,12 @@
     <% @reviews.each do |review| %>
       
         <li><%= render_stars review %></li>
+        <li>Reviewer: <%= review.user.email %></li>
         <li><%= review.review_text %></li>
-        <li><%= link_to 'Edit', [:edit, @book, review] %></li>
-        <li><%= link_to 'Delete Review', [@book, review], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <% if review.user == @user %>
+          <li><%= link_to 'Edit Review', [:edit, @book, review] %> |
+          <%= link_to 'Delete Review', [@book, review], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <% end %>
         <br>
     <% end %>
  </ul>

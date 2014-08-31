@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :singlesearch]
   before_filter :authenticate_user!, except: [:index, :show, :search, :singlesearch]
+  load_and_authorize_resource
   
   # GET /books
   # GET /books.json

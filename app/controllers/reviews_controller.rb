@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_book
   after_action :set_rating
+  load_and_authorize_resource
 
 
   # GET /reviews/new

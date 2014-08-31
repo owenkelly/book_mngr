@@ -1,6 +1,10 @@
 require 'rails_helper.rb'
 
 describe "Book and Review Integration", type: :feature do
+	before :each do
+		@user = FactoryGirl.create(:user)
+		login_as(@user, :scope => :user)
+	end
 	
 	context "new" do
 
@@ -21,7 +25,7 @@ describe "Book and Review Integration", type: :feature do
 
 
 		it "should reject a review without a rating" do
-			book = create(:book)
+			book = create(:book, user: @user)
 			visit new_book_review_path(book)
 			fill_in "Review", with: "I like turtles"
 			click_link_or_button "Create Review"
@@ -35,7 +39,7 @@ describe "Book and Review Integration", type: :feature do
 	context 'edit' do
 
 		it "should allow for a book to be edited" do
-			book = create(:book)
+			book = create(:book, user: @user)
 			visit edit_book_path(book)
 			fill_in "Title", with: "I, Ninja"
 			click_link_or_button "Update Book"
@@ -43,7 +47,7 @@ describe "Book and Review Integration", type: :feature do
 		end
 
 		it "should reject an edit which removes a key field" do
-			book = create(:book)
+			book = create(:book, user: @user)
 			visit edit_book_path(book)
 			fill_in "Title", with: ""
 			click_link_or_button "Update Book"
@@ -51,13 +55,14 @@ describe "Book and Review Integration", type: :feature do
 		end
 
 		it "should allow for a review to be updated" do
-			review = create(:review)
+			review = create(:review, user: @user)
 			visit edit_book_review_path(review.book, review)
 			fill_in "Review", with: "I feel like chicken tonight!"
 			click_link_or_button "Update Review"
 			expect(review.reload.review_text).to eq("I feel like chicken tonight!")
 
 		end
+
 
 	end
 
@@ -71,7 +76,7 @@ describe "Book and Review Integration", type: :feature do
 		end
 
 		it "should allow searching through reviews" do
-			review = create(:review)
+			review = create(:review, user: @user)
 			visit book_path(review.book)
 			select "Rating", from: "q[c][0][a][0][name]"
 			select "not equal to", from: "q[c][0][p]" 
@@ -119,20 +124,20 @@ describe "Book and Review Integration", type: :feature do
 	context 'delete' do
 
 		it "should delete a book without reviews" do
-			book = create(:book)
+			book = create(:book, user: @user)
 			visit book_path(book)
 			expect { click_link('Delete Book') }.to change(Book, :count).by(-1)
 		end
 
 		it "should disable a book with a review" do
-			review = create(:review)
+			review = create(:review, user: @user)
 			visit book_path(review.book)
 			click_link_or_button "Disable Book"
 			expect(review.book.reload.active).not_to be(true)
 		end
 
 		it "should allow deletion of a review" do
-			review = create(:review)
+			review = create(:review, user: @user)
 			visit book_path(review.book)
 			expect {click_link('Delete Review')}.to change(Review, :count).by(-1)
 		end
