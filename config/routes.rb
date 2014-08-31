@@ -2,10 +2,15 @@ Rails.application.routes.draw do
 
   
   devise_for :users
+
   root 'books#index'
 
   get 'tags/:tag', to: 'books#search', as: :tag
   
+  get 'users/:id/profile', to: "users#profile", as: :users
+
+  get 'admin/:id', to: 'users#admin', as: :admin
+
   resources :books do
     collection do
       match 'search' => 'books#search', via: [:get, :post], as: :search

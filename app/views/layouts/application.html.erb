@@ -10,7 +10,11 @@
 <div id="user_nav">
 <%= link_to 'Home', root_path %> |
     <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
+      Logged in as <strong><%= current_user.email %></strong> |
+        <% if current_user.has_role? :admin %>
+          <%= link_to "Admin Panel", admin_path %> |
+          <% end %>
+
       <%= link_to 'Edit profile', edit_user_registration_path %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     <% else %>

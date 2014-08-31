@@ -23,3 +23,5 @@ en:
   unauthorized:
     manage:
       all: "Not allowed to %{action} %{subject}s you didn't create!"
+    create:
+      review: "Your ability to create new reviews has been suspended."

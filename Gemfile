@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.2'
 
 gem 'devise'
+gem 'devise_invitable'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'cancancan'
