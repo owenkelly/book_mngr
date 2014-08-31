@@ -7,5 +7,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
    has_many :books
-   has_one :review
+   has_many :review
+
+	def average_rating
+    	review.average(:rating)
+    end
+
+    def number_of_reviews
+    	review.count
+    end
+
 end

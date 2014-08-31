@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   get 'users/:id/profile', to: "users#profile", as: :users
 
-  get 'admin/:id', to: 'users#admin', as: :admin
+  get 'admin', to: 'users#admin', as: :admin
 
   resources :books do
     collection do
