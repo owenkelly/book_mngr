@@ -20,6 +20,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     respond_to_creative :created, 'Review was successfully created.', :new
+    UserMailer.new_rating_email(@review).deliver if @review.save
   end
 
   # PATCH/PUT /reviews/1

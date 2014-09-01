@@ -11,8 +11,12 @@ class Book < ActiveRecord::Base
 	belongs_to :user
 	
 	has_many :reviews
+	
 	has_many :taggings
 	has_many :tags, through: :taggings
+
+	has_many :followings
+	has_many :followers, through: :following
 
 	scope :active?, -> { where active: true }
 	scope :deactive?, -> { where.not active: true}
