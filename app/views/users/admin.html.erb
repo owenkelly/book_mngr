@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      
+      <th>User Email</th>
+      <th>Average Rating</th>
+      <th>Number of Reviews</th>
+      <th>Number of Books</th>
+     </tr>
+  </thead>
+
+  <tbody>
+
+    <% @users.each do |user|  %>
+      <%= render "admin_table_row", user: user %>
+    <% end %>
+ 
+      <% @restricted.each do |user|  %>
+      <%= render "admin_table_row", user: user %> 
+    <% end %>
+        <% @admins.each do |user|  %>
+      <%= render "admin_table_row", user: user %> 
+    <% end %>
+  </tbody>
+</table>
+<br>

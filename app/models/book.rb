@@ -24,7 +24,7 @@ class Book < ActiveRecord::Base
 
 
 	def average_rating
-		reviews.average(:rating)
+		self.reviews.average(:rating)
 	end
 
 	def tag_list

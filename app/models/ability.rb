@@ -9,10 +9,12 @@ class Ability
         elsif user.has_role? :restricted
             can :public_actions, Review
             can [:public_actions, :create], Book, :active => true
+            can [:profile], User, :id => user.id
             can [:update, :destroy, :disable], [Book, Review], :user_id => user.id
         else
             can [:public_actions, :create], Review
             can [:public_actions, :create], Book, :active => true
+            can [:profile], User, :id => user.id
             can [:update, :destroy, :disable], [Book, Review], :user_id => user.id
         end 
 

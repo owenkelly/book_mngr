@@ -11,6 +11,12 @@ Rails.application.routes.draw do
 
   get 'admin', to: 'users#admin', as: :admin
 
+  post 'adminize/:id', to: "users#adminize", as: :adminize
+
+  post 'restrict/:id', to: "users#restrict", as: :restrict
+
+  post 'unrestrict/:id', to: "users#unrestrict", as: :unrestrict
+
   resources :books do
     collection do
       match 'search' => 'books#search', via: [:get, :post], as: :search
