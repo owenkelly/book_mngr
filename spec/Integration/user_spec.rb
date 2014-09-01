@@ -1,6 +1,6 @@
 require 'rails_helper.rb'
 
-describe "User and Admin Integration", type: :feature do
+describe "User Integration", type: :feature do
 
 
 	context "user creation" do
@@ -41,6 +41,16 @@ describe "User and Admin Integration", type: :feature do
 			fill_in "Title", with: "The Big Fish"
 			click_button "Update Book"
 			expect(book.reload.title).to eq("The Big Fish")
+		end
+
+		it "should not allow a restrited user to create a review" do
+			restricted = create(:restricted, email: "restricted@test.com")
+			book = create(:book, user: @user)
+			logout(@user)
+			login_as(restricted)
+			visit book_path(book)
+			click_link "New Review"
+			expect(page).to have_content("Your ability to create new reviews has been suspended.")
 		end
 
 	end

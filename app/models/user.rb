@@ -34,10 +34,6 @@ class User < ActiveRecord::Base
     self.add_role(:admin) unless self.has_role? :restricted
   end
 
-  def unadminize!
-    self.remove_role(:admin)
-  end
-
 
 
 end

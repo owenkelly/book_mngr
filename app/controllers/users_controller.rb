@@ -32,7 +32,6 @@ class UsersController < ApplicationController
 	def unrestrict
 		user = User.find(params[:id])
 		return redirect_to admin_path if user.unrestrict!
-		redirect_to admin_path, notice: 'Problem restoring permissions'
 	end
 
 end

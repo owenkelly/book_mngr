@@ -11,7 +11,11 @@ FactoryGirl.define do
 
 		factory :admin do
 	        after(:create) {|user| user.add_role(:admin)}
-	    end
+		end
+
+		factory :restricted do
+			after(:create) {|user| user.add_role(:restricted)}
+		end
 	end
 
 end

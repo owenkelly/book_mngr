@@ -13,7 +13,7 @@ module UsersHelper
 
 	def restricted_toggle user
 		if user.has_role? :restricted
-			button_to "Unrestirct User", unrestrict_path(user)
+			button_to "Unrestrict User", unrestrict_path(user)
 		elsif user.has_role? :admin
 			'-----'		
 		else
