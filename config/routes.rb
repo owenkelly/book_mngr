@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       match ':id/search' => "books#singlesearch", via: [:get, :post], as: :singlesearch
     end
     get "disable"
+    post "approve", to: "books#approve", as: :approve
     resources :reviews, except: [:show, :index]
     resources :followings, only: [:create, :destroy]
   end

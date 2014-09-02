@@ -8,9 +8,9 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     if params[:tag]
-      @search = Book.active?.search(tags_name_eq: params[:tag])
+      @search = Book.approved?(@user).search(tags_name_eq: params[:tag])
     else
-      @search = Book.active?.search(params[:q])
+      @search = Book.approved?(@user).search(params[:q])
     end
       @books = @search.result.includes(:reviews, :tags).paginate(:page => params[:page]).order(rating: :desc)
       @search.build_condition
@@ -48,7 +48,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
-    respond_to_creative :created, 'Book was successfully created.', :new
+    respond_to_creative :created, 'Book was successfully created', :new
   end
 
   # PATCH/PUT /books/1
@@ -70,13 +70,17 @@ class BooksController < ApplicationController
     respond_to_destructive
   end
 
-  def manage
+  def approve
+    @book = Book.find(params[:book_id])
+    return redirect_to admin_path if @book.approve!
+    redirect_to admin_path, notice: 'Problem approving book'
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
-      @book = Book.find(params[:id])
+      @book = Book.active?.find(params[:id])
     end
 
     def respond_to_creative status, notice, action

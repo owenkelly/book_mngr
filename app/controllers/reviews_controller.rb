@@ -59,7 +59,7 @@ class ReviewsController < ApplicationController
     end
 
     def set_book
-      @book = Book.active?.find(params[:book_id])
+      @book = Book.approved?(@user).find(params[:book_id])
     end
 
     def set_rating

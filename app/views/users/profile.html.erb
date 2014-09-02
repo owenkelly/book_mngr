@@ -1,1 +1,30 @@
-Profile for: <%=@user.email%>
+Email Preferences for: <%=@user.email%>
+
+<table>
+  <thead>
+    <tr>
+      <th>Book Title</th>
+      <th>Rating and Review</th>
+      <th>Rating Only</th>
+      <th>Review Only</th>
+      <th>Daily Digest></th>
+      <th>No Email</th>
+ 
+     </tr>
+  </thead>
+
+  <tbody>
+
+    <% @user.follows.each do |follow|  %>
+    	<tr>
+    	<td><%= link_to follow.title, follow %></td>
+    	<td><%# follow.email_preference %></td>
+    	</tr>
+    <%end%>
+    </tbody>
+    </table>
+<br>
+<br>
+<%= link_to "invite a user", new_user_invitation_path %>
+
+

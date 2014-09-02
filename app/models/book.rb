@@ -18,9 +18,11 @@ class Book < ActiveRecord::Base
 	has_many :followings
 	has_many :followers, through: :followings
 
+	scope :approved?, -> (user) { active?.where("approved=? OR user_id=?", 'true', user ) }
 	scope :active?, -> { where active: true }
-	scope :deactive?, -> { where.not active: true}
-	scope :has_reviews?, -> { where.not rating: nil}
+	scope :deactive?, -> { where.not active: true }
+	scope :unapproved?, -> { where.not approved: true }
+	scope :has_reviews?, -> { where.not rating: nil }
 
 	def self.ransackable_attributes auth_object = nil
 		%w(title author) + _ransackers.keys
@@ -43,6 +45,10 @@ class Book < ActiveRecord::Base
 
 	def follower_list
 		followers.map(&:email).join(", ")
+	end
+
+	def approve!
+		self.update(approved: true)
 	end
 
 

@@ -10,5 +10,4 @@ class UserMailer < ActionMailer::Base
   	mail(bcc: @followers, subject: "New review for #{@book.title}!")
   end
 
-
 end

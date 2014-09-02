@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 		@admins = User.with_role(:admin)
 		@restricted = User.with_role(:restricted)
 		@users = User.all - @admins - @restricted
+		@books = Book.unapproved?
 	end
 
 	def adminize
