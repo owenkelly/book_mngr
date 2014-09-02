@@ -11,12 +11,12 @@ class Book < ActiveRecord::Base
 	belongs_to :user
 	
 	has_many :reviews
-	
+
 	has_many :taggings
 	has_many :tags, through: :taggings
 
 	has_many :followings
-	has_many :followers, through: :following
+	has_many :followers, through: :followings
 
 	scope :active?, -> { where active: true }
 	scope :deactive?, -> { where.not active: true}
@@ -40,6 +40,16 @@ class Book < ActiveRecord::Base
 	    	Tag.where(name: n.strip).first_or_create!
 		end
 	end
+
+	def follower_list
+		followers.map(&:email).join(", ")
+	end
+
+
+
+
+
+
 
 
 	private

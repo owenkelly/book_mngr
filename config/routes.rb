@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   post 'unrestrict/:id', to: "users#unrestrict", as: :unrestrict
 
+
+
   resources :books do
     collection do
       match 'search' => 'books#search', via: [:get, :post], as: :search
@@ -24,9 +26,10 @@ Rails.application.routes.draw do
     end
     get "disable"
     resources :reviews, except: [:show, :index]
+    resources :followings, only: [:create, :destroy]
   end
 
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -58,5 +58,5 @@
 <% unless @book.reviews.where(user_id: @user.id).exists? %>
   <%= link_to 'New Review', new_book_review_path(@book) %> |
 <% end %>
-<%= disable_or_destroy @book %>
-
+<%= disable_or_destroy @book %> |
+<%= following_toggle @book %>

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :books
   has_many :reviews
 
+  has_many :followings
+  has_many :follows, through: :followings
 
 	def rating
     self.reviews.average(:rating)
@@ -33,6 +35,14 @@ class User < ActiveRecord::Base
   def adminize!
     self.add_role(:admin) unless self.has_role? :restricted
   end
+
+  def follow_list
+    follows.map(&:title).join(", ")
+  end
+
+
+
+  
 
 
 

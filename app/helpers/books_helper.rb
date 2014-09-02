@@ -14,6 +14,5 @@ module BooksHelper
 		raw book.tags.map(&:name).map {|tag| link_to tag, tag_path(tag)}.join(", ")
 	end
 
-
 	
 end

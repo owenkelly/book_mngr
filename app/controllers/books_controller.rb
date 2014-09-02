@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :singlesearch]
   before_filter :authenticate_user!, except: [:index, :show, :search, :singlesearch]
+  after_action :set_follower, only: :create
   load_and_authorize_resource
   
   # GET /books
@@ -47,9 +48,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
-
     respond_to_creative :created, 'Book was successfully created.', :new
-
   end
 
   # PATCH/PUT /books/1
@@ -100,9 +99,15 @@ class BooksController < ApplicationController
       end
     end
 
+    def set_follower
+      @book.followings.build(user_id: @user.id).save!
+    end
+
+    
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :active, :author, :isbn, :tag_list, :cover, :rating, :user_id)
+      params.require(:book).permit(:title, :active, :author, :isbn, :tag_list, :cover, :rating, :user_id, :followings)
     end
 end
