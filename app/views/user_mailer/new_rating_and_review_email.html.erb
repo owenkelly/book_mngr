@@ -5,8 +5,8 @@
 	</head>
 	<body>
 	<h1>New Review by <%= @reviewer.email%></h1>
-	<p>They gave it <%= render "shared/average_stars.html.erb", object: @review %></p>
+	<p>They gave it <%= @review.rating %> stars!</p>
 	<p>And thought: <%= @review.review_text %></p>
-	<br><p><strong><%= link_to @book.title, book_path(@book) %> now has an average rating of:</strong> <%= render "shared/average_stars", object: @book %></p>
+	<br><p><strong><%= link_to @book.title, book_path(@book) %> now has an average rating of:</strong> <%= @book.rating %> stars!</p>
 	</body>
 </html>
