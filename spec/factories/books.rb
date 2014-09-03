@@ -12,11 +12,20 @@ FactoryGirl.define do
 		title 
 		author 
 		isbn
+		approved true
 		tag_list "TAGGED" 
 		cover Rack::Test::UploadedFile.new(File.open("#{Rails.root}/spec/fixtures/test.jpg"))
+
+		factory :followed_book do
+			after(:create) {|book| book.followers << FactoryGirl.create(:follower) } 
+		end	
 	end
 
-
+	factory :following do
+		user_id
+		book_id
+		setting "rating"
+	end
 
 
 	factory :review do
@@ -24,5 +33,13 @@ FactoryGirl.define do
 		review_text
 		book
 	end
+
+
+	factory :follower, class: User do
+		email "follower@follows.com"
+		password "facebook"
+		password_confirmation "facebook"
+	end
+
 
 end

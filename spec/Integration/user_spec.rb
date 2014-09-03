@@ -55,5 +55,40 @@ describe "User Integration", type: :feature do
 
 	end
 
+	context "following" do
+		before :each do
+			@user = FactoryGirl.create(:user)
+			login_as(@user, :scope => :user)
+		end
+
+		it "should allow users to follow books" do
+			book = create(:book)
+			visit book_path(book)
+			click_link "Follow Book"
+			expect(book.reload.followers.last).to eq(@user)
+		end
+
+		it "should allow users to change their email settings" do
+			book = create(:book)
+			visit book_path(book)
+			click_link "Follow Book"
+			visit users_path(@user)
+			choose("following_setting_rating")
+			click_button "Update"
+			expect(@user.followings.reload.last.setting).to eq("rating")
+		end
+
+		it "should allow a user to unfollow a book that has been followed" do
+			book = create(:book)
+			visit book_path(book)
+			click_link "Follow Book"
+			expect(book.reload.followers.last).to eq(@user)
+			click_link "Unfollow Book"
+			expect(@user.follows.reload.last).to eq(nil)
+		end
+
+	end
+
+
 
 end

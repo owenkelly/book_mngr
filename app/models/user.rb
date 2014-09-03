@@ -36,9 +36,6 @@ class User < ActiveRecord::Base
     self.add_role(:admin) unless self.has_role? :restricted
   end
 
-  def follow_list
-    follows.map(&:title).join(", ")
-  end
 
 
 

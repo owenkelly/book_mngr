@@ -43,9 +43,6 @@ class Book < ActiveRecord::Base
 		end
 	end
 
-	def follower_list
-		followers.map(&:email).join(", ")
-	end
 
 	def approve!
 		self.update(approved: true)

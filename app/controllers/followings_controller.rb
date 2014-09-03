@@ -4,11 +4,7 @@ class FollowingsController < ApplicationController
 	
 	def create
 		@following = current_user.followings.build(book_id: @book.id)
-		if @following.save
-    		redirect_to @book, notice: "This book has been added to your follow list"
-  		else
-		    redirect_to @book, notice: "Unable to add this book to your follow list"
-		end
+    	redirect_to @book, notice: "This book has been added to your follow list" if @following.save
 	end
 
 

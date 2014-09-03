@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-	</head>
-	<body>
-	<h1>New Review by <%= @reviewer.email%></h1>
-	<p>They gave it <%= render "shared/average_stars.html.erb", object: @review %></p>
-	<p>And thought: <%= @review.review_text %></p>
-	<br><p><strong><%= link_to @book.title, book_path(@book) %> now has an average rating of:</strong> <%= render "shared/average_stars", object: @book %></p>
-	</body>
-</html>
+New Review by <%= @reviewer.email%>
+
+They gave it <%= @review.rating %> stars!
+
+They thought: <%= @review.review_text %>
+
+<%= @book.title %> now has an average rating of: <%= @book.rating %> stars!

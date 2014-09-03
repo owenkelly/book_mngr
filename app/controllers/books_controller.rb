@@ -73,7 +73,6 @@ class BooksController < ApplicationController
   def approve
     @book = Book.find(params[:book_id])
     return redirect_to admin_path if @book.approve!
-    redirect_to admin_path, notice: 'Problem approving book'
   end
 
 
