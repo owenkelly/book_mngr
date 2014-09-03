@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
     if @review.save
       UserMailer.new_rating_email(@review).deliver 
       UserMailer.new_review_email(@review).deliver if @review.review_text.length > 0
-      UserMailer.new_rating_and_review_email(@review).deliverend
+      UserMailer.new_rating_and_review_email(@review).deliver
     end
     respond_to_creative :created, 'Review was successfully created.', :new
   end
@@ -53,7 +53,7 @@ class ReviewsController < ApplicationController
     def respond_to_creative status, notice, action
       respond_to do |format|
         if @review.update(review_params)
-          format.html { redirect_to :back, notice: notice }
+          format.html { redirect_to @book, notice: notice }
           format.json { render :show, status: status, location: @review }
         else
           format.html { render action }

@@ -1,5 +1,5 @@
  class UserMailer < ActionMailer::Base
-    default from: "Do-Not-Reply@owens-book-mngr.com"
+    default from: "owen.james.kelly@gmail.com"
 
   def new_rating_and_review_email review
   	@reviewer = review.user
