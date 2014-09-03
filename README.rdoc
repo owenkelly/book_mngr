@@ -2,7 +2,7 @@
 
 {<img src="https://codeclimate.com/github/owenkelly/book_mngr/badges/gpa.svg" />}[https://codeclimate.com/github/owenkelly/book_mngr]
 
-When the seeds file is run, an admin user named admin@owen-book-mngr.com will be created, with the password of admin1234. The seeds file also contains jumbled book and auther info for testing -- these are commented out by default.
+When the seeds file is run, an admin user named admin@owen-book-mngr.com will be created, with the password of admin1234. The seeds file also contains jumbled book and author info for testing -- these are commented out by default.
 
 While any user can create books and reviews, admins will need to approve the books before others are able to see them in the library. This is done via the admin panel in the top navbar. You are also able to restrict the priviledges of non-admin users, which will disallow them form creating more reviews. 
 
