@@ -19,11 +19,11 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
-    if @review.save
-      UserMailer.new_rating_email(@review).deliver 
-      UserMailer.new_review_email(@review).deliver if @review.review_text.length > 0
-      UserMailer.new_rating_and_review_email(@review).deliver
-    end
+    #if @review.save
+      #UserMailer.new_rating_email(@review).deliver 
+      #UserMailer.new_review_email(@review).deliver if @review.review_text.length > 0
+      #UserMailer.new_rating_and_review_email(@review).deliver
+    #end
     respond_to_creative :created, 'Review was successfully created.', :new
   end
 
