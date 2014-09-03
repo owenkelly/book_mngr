@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   post 'unrestrict/:id', to: "users#unrestrict", as: :unrestrict
 
+  resources :followings, only: [:create, :destroy, :update]
+     
 
 
   resources :books do
@@ -27,7 +29,6 @@ Rails.application.routes.draw do
     get "disable"
     post "approve", to: "books#approve", as: :approve
     resources :reviews, except: [:show, :index]
-    resources :followings, only: [:create, :destroy]
   end
 
   

@@ -104,7 +104,7 @@ class BooksController < ApplicationController
     end
 
     def set_follower
-      @book.followings.build(user_id: @user.id).save!
+      f = @book.followings.build(user_id: @user.id).save!
     end
 
     

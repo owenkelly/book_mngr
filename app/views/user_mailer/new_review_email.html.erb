@@ -5,16 +5,6 @@
 	</head>
 	<body>
 	<h1>New Review by <%= @reviewer.email%></h1>
-	<p>They gave it <%= render "shared/average_stars.html.erb", object: @review %></p>
+	<p>They thought: <%= @review.review_text %></p>
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-

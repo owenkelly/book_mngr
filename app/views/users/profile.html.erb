@@ -1,5 +1,6 @@
 Email Preferences for: <%=@user.email%>
 
+
 <table>
   <thead>
     <tr>
@@ -7,24 +8,46 @@ Email Preferences for: <%=@user.email%>
       <th>Rating and Review</th>
       <th>Rating Only</th>
       <th>Review Only</th>
-      <th>Daily Digest></th>
       <th>No Email</th>
- 
      </tr>
   </thead>
-
   <tbody>
 
-    <% @user.follows.each do |follow|  %>
-    	<tr>
-    	<td><%= link_to follow.title, follow %></td>
-    	<td><%# follow.email_preference %></td>
+    <% @followings.each do |following|  %>
+    <tr>
+    	<td><%= link_to following.follows.title, following.follows %></td>
+    	<%= form_for following do %>
+    	<td><%= radio_button_tag "following[setting]", "rating_and_review", following.setting == "rating_and_review"  %></td>
+    	<td><%= radio_button_tag "following[setting]", "rating", following.setting == "rating" %></td>
+    	<td><%= radio_button_tag "following[setting]", "review", following.setting == "review" %></td>
+    	<td><%= radio_button_tag "following[setting]", "off", following.setting == "off" %></td>
+    	<td><%= submit_tag 'Update' %></td>
     	</tr>
-    <%end%>
+    	
+
+    	<% end %>
+    	<% end %>
     </tbody>
     </table>
+
+        
+    
+
+    
 <br>
+
 <br>
-<%= link_to "invite a user", new_user_invitation_path %>
+
+
+
+<%= link_to "Invite a user", new_user_invitation_path %>
+
+
+
+
+
+
+
+
 
 

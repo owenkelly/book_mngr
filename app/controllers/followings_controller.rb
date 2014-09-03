@@ -1,5 +1,6 @@
 class FollowingsController < ApplicationController
-	before_action :set_book
+	before_action :set_book, only: [:create, :destroy]
+	
 	
 	def create
 		@following = current_user.followings.build(book_id: @book.id)
@@ -17,11 +18,24 @@ class FollowingsController < ApplicationController
 		redirect_to @book, notice: "You are no longer following this book"
 	end
 
+
+
+	def update
+		@following = Following.find(params[:id])
+		redirect_to :back if @following.update(following_params)    
+    end
+
+
+
 	private
 
-	def review_params
-      params.require(:following).permit(:book_id, :user_id)
+	def following_params
+      params.require(:following).permit(:book_id, :user_id, :setting)
     end
+
+    
+
+    
 
 
 

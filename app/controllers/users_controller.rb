@@ -3,11 +3,7 @@ class UsersController < ApplicationController
 	load_and_authorize_resource
 
 	def profile
-		#if @user.has_role? :admin
-			#admin
-			#render :admin
-		#end
-
+		@followings = Following.where(user_id: @user.id)
 	end
 
 
@@ -34,5 +30,6 @@ class UsersController < ApplicationController
 		user = User.find(params[:id])
 		return redirect_to admin_path if user.unrestrict!
 	end
+
 
 end

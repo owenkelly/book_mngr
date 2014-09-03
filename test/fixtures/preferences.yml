@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rating_email: false
+  reviews_email: false
+  rating_and_reviews_email: false
+  no_email: false
+
+two:
+  rating_email: false
+  reviews_email: false
+  rating_and_reviews_email: false
+  no_email: false
