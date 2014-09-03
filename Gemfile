@@ -25,7 +25,7 @@ gem 'i18n'
 gem 'will_paginate'
 gem 'arel'
 gem 'jquery-raty-rails', github: 'emaiax/jquery-raty-rails'
-gem 'mailgunner'
+gem 'mandrill-api'
 
 group :development do
   gem 'spring'
