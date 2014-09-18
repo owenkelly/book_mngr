@@ -7,8 +7,8 @@ Rails.application.initialize!
 ActionMailer::Base.smtp_settings = {
     :port =>           '587',
     :address =>        'smtp.mandrillapp.com',
-    :user_name =>      	ENV['app29100317@heroku.com'],
-    :password =>       	ENV['DOvWH6uoxMy6V0P9s2g4-A'],
+    :user_name =>      	ENV['MANDRILL_USERNAME'],
+    :password =>       	ENV['MANDRILL_APIKEY],
     :domain =>         'heroku.com',
     :authentication => :plain
 }

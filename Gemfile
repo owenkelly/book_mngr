@@ -12,7 +12,6 @@ gem 'cancancan'
 gem 'rolify'
 gem 'ancestry'
 gem 'pg'
-gem "twitter-bootstrap-rails"
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -35,6 +34,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'simplecov', require: false
   gem "codeclimate-test-reporter", require: false
+  gem 'letter_opener'
 end
 
 group :test do
