@@ -1,3 +1,10 @@
 language: ruby
 rvm:
-  - 2.1.0
+- 2.1.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: dPHGXHZQOyPl1/5URY9voaeodWLvy34yLXO8DmLTF55dVb7K7wsoSS1VElQ6FDV08eQRSynkWCltGQ/3hlNhxsIIPv7qZeAJFjWRpCzLQCYqUKcz61fyI0WPtotqOgdOo1P6QpMicJPpMF/KH/GZwHwPMncT5aFWYFKt/2gwjuU=
+  app: owens-book-mngr
+  on:
+    repo: owenkelly/book_mngr
