@@ -21,7 +21,7 @@ authors = ["Homer", "Shakespeare", "Jane Austin", "Geroge RR Martin", "Tony Star
 
 u = User.create(:email => 'admin@owen-book-mngr.com', :password => 'admin1234', :password_confirmation => 'admin1234')
 u.add_role :admin
-#titles.each do |title|
-	#Book.create( title: title, author: authors.sample, 
-		#cover: File.open(File.join(Rails.root, 'app/assets/images/test_cover.jpg')), user_id: u.id)
-#end
+titles.each do |title|
+	Book.create( title: title, author: authors.sample, 
+		cover: File.open(File.join(Rails.root, 'app/assets/images/test_cover.jpg')), user_id: u.id)
+end

@@ -21,6 +21,13 @@ module UsersHelper
 		end
 	end
 
+	def delete_toggle user
+		if user.has_role? :admin
+			'------------'
+		else
+			button_to "Delete User", user, method: :delete, data: { confirm: 'Are you sure?' } 
+		end
+	end
 
 
 

@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :singlesearch]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :disable, :approve, :singlesearch]
   before_filter :authenticate_user!, except: [:index, :show, :search, :singlesearch]
   after_action :set_follower, only: :create
   load_and_authorize_resource
@@ -65,14 +65,12 @@ class BooksController < ApplicationController
   end
 
   def disable
-    @book = Book.find(params[:book_id])
     @book.update(active: false)
     respond_to_destructive
   end
 
   def approve
-    @book = Book.find(params[:book_id])
-    return redirect_to admin_path if @book.approve!
+      return redirect_to admin_path if @book.approve!
   end
 
 

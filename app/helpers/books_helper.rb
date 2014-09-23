@@ -3,7 +3,7 @@ module BooksHelper
 
 	def disable_or_destroy book
 		if book.reviews.count > 0
-			link_to "Disable Book", book_disable_path(book), data: { confirm: 'Are you sure?' }
+			link_to "Disable Book", disable_book_path(book), data: { confirm: 'Are you sure?' }
 		else
 			link_to 'Delete Book', book, method: :delete, data: { confirm: 'Are you sure?' }
 		end

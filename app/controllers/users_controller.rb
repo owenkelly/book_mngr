@@ -31,5 +31,9 @@ class UsersController < ApplicationController
 		return redirect_to admin_path if user.unrestrict!
 	end
 
+	def destroy
+		user = User.find(params[:id])
+		return redirect_to admin_path if user.destroy
+	end
 
 end

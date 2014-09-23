@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   
   devise_for :users
+  resources :users, only: :destroy
 
   root 'books#index'
 
@@ -19,15 +20,14 @@ Rails.application.routes.draw do
 
   resources :followings, only: [:create, :destroy, :update]
      
-
+  get "books/:id/disable", to: "books#disable", as: :disable_book
+  post "books/:id/approve", to: "books#approve", as: :approve_book
 
   resources :books do
     collection do
       match 'search' => 'books#search', via: [:get, :post], as: :search
       match ':id/search' => "books#singlesearch", via: [:get, :post], as: :singlesearch
     end
-    get "disable"
-    post "approve", to: "books#approve", as: :approve
     resources :reviews, except: [:show, :index]
   end
 
