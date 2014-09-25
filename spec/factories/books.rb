@@ -13,7 +13,7 @@ FactoryGirl.define do
 		author 
 		isbn
 		approved true
-		tag_list "TAGGED" 
+		tag_list "TAGGED"
 		cover Rack::Test::UploadedFile.new(File.open("#{Rails.root}/spec/fixtures/test.jpg"))
 
 		factory :followed_book do

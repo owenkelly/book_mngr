@@ -130,7 +130,8 @@ describe "Book and Review Integration", type: :feature do
 		end
 
 		it "should disable a book with a review" do
-			review = create(:review, user: @user)
+			book = create(:book, user: @user)
+			review = create(:review, user: @user, book: book)
 			visit book_path(review.book)
 			click_link_or_button "Disable Book"
 			expect(review.book.reload.active).not_to be(true)

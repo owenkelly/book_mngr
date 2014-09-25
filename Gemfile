@@ -34,7 +34,6 @@ group :development do
   gem 'rubocop', require: false
   gem 'simplecov', require: false
   gem "codeclimate-test-reporter", require: false
-  gem 'letter_opener'
 end
 
 group :test do

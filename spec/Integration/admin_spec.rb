@@ -30,6 +30,12 @@ describe "Admin Integration", type: :feature do
 			expect(book.reload.approved).to be(true)
 		end
 
+		it "should allow admins to delete other users" do
+			user = create(:user)
+			visit admin_path
+			expect { click_button "Delete User" }.to change(User, :count).by(-1)
+		end
+
 
 	end
 
