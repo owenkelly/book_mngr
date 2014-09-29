@@ -10,5 +10,6 @@ deploy:
   api_key:
     secure: dPHGXHZQOyPl1/5URY9voaeodWLvy34yLXO8DmLTF55dVb7K7wsoSS1VElQ6FDV08eQRSynkWCltGQ/3hlNhxsIIPv7qZeAJFjWRpCzLQCYqUKcz61fyI0WPtotqOgdOo1P6QpMicJPpMF/KH/GZwHwPMncT5aFWYFKt/2gwjuU=
   app: owens-book-mngr
+  strategy: git
   on:
     repo: owenkelly/book_mngr
